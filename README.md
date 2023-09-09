@@ -4,12 +4,17 @@
 <p>The project is a console application developed as part of my programming learning journey. The main objective is to provide a comprehensive solution for storing, updating, creating, reading, and deleting file records locally.</p>
 
 ### Core Concepts in C# Language
-- Logic Programming
-- Object-Oriented Programming
-- Data Structures
-- File IO
-- Nullable Types
-- Value Types
+- Logic-Programming
+- Object-Oriented-Programming
+- File-IO
+- Data-Structures
+- Nullable-Types
+- Exception-Handling
+  
+### Intermediate Concepts in C# Language.
+- Collection
+- Serializable
+- Action (Delegate)
 
 ### Clone Repository
 ```bash
