@@ -1,4 +1,5 @@
 using ConsoleApp.Models;
+using ConsoleApp.Utils;
 
 namespace ConsoleApp.Services.Implements;
 
@@ -16,15 +17,14 @@ public class ObjectRelationshipsManager : IObjectRelationshipsManager
         account.UserProfile = userProfile;
     }
 
-    public void UserProfileByCorporation(UserProfile userProfile, Corporation corporation)
+    public void UserProfileByCorporations(UserProfile userProfile, HashSet<Corporation> corporations)
     {
-        userProfile.Corporation = corporation;
-        corporation.UserProfile = userProfile;
+        var addCorporations = LambdaConfig.AddCorporationsInUserProfile(userProfile);
+
+        foreach (var corporation in corporations)
+            addCorporations(corporation);
     }
 
-    public void CorporationByUserProfile(UserProfile userProfile, Corporation corporation)
-    {
-        corporation.UserProfile = userProfile;
-        userProfile.Corporation = corporation;
-    }
+    public void CorporationsByUserProfile(UserProfile userProfile, HashSet<Corporation> corporations) =>
+        UserProfileByCorporations(userProfile, corporations);
 }

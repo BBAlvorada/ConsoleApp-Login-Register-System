@@ -2,6 +2,7 @@ using System.Text;
 
 namespace ConsoleApp.Models;
 
+[Serializable]
 public class Corporation
 {
     public string? Name { get; set; }
@@ -27,7 +28,7 @@ public class Corporation
             .Append($"Name: {Name}, ")
             .Append($"Admission: {AdmissionDate.Date}, ")
             .Append($"Terminated: {TerminatedDate.Date}")
-            .AppendLine(" }")
+            .Append(" }")
             .ToString();
     }
 }

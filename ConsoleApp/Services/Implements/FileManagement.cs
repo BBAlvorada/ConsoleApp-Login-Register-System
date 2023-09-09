@@ -1,8 +1,6 @@
-using ConsoleApp.Exceptions;
-
 namespace ConsoleApp.Services.Implements;
 
-public class FileManagement : IFileManagement
+public class FileManagement<T> : IFileManagement<T> where T : class
 {
     private readonly string _folderPath;
     private readonly string _filePath;
@@ -13,11 +11,11 @@ public class FileManagement : IFileManagement
         _filePath = Path.Combine(_folderPath, "Login & Register System.txt.");
     }
 
-    public void CreateFile(object model)
+    public void CreateFile(T model)
     {
         using var writer = new StreamWriter(_filePath, true);
 
-        writer.Write($"{model}\n");
+        writer.Write($"{model}");
     }
 
     public string GetFile()
@@ -28,7 +26,7 @@ public class FileManagement : IFileManagement
         return reader.ReadToEnd();
     }
 
-    public void UpdateFile(object newModel)
+    public void UpdateFile(T newModel)
     {
         using var writer = new StreamWriter(_filePath);
 

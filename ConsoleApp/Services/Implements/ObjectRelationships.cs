@@ -11,12 +11,12 @@ public class ObjectRelationships : IObjectRelationships
 
     public void CreatingRelationships(Account account,
                                       UserProfile userProfile,
-                                      Corporation corporation)
+                                      HashSet<Corporation> corporations)
     {
         _objectRelationshipsManager.AccountByUserProfile(account, userProfile);
         _objectRelationshipsManager.UserProfileByAccount(account, userProfile);
 
-        _objectRelationshipsManager.CorporationByUserProfile(userProfile, corporation);
-        _objectRelationshipsManager.UserProfileByCorporation(userProfile, corporation);
+        _objectRelationshipsManager.CorporationsByUserProfile(userProfile, corporations);
+        _objectRelationshipsManager.UserProfileByCorporations(userProfile, corporations);
     }
 }

@@ -2,6 +2,7 @@ using System.Text;
 
 namespace ConsoleApp.Models;
 
+[Serializable]
 public class Account
 {
     public string? Email { get; set; }

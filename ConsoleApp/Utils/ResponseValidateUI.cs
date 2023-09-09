@@ -1,13 +1,13 @@
-using System.Linq.Expressions;
 using ConsoleApp.Exceptions;
+using ConsoleApp.Models;
 using ConsoleApp.Services;
 
 namespace ConsoleApp.Utils;
 
 public static class ResponseValidateUI
 {
-    public static void IsMenuInputValid(IObjectCreatingManager objectCreatingManager,
-                                        IFileManagement fileManagement,
+    public static void IsMenuInputValid(IObjectCreatingManager<Account> objectCreatingManager,
+                                        IFileManagement<Account> fileManagement,
                                         short response)
     {
         switch (response)
@@ -40,12 +40,6 @@ public static class ResponseValidateUI
     public static bool IsEmailAndPasswordValid(string email, string password) =>
         HasEmailValid(email) && HasPasswordValid(password);
 
-    public static bool IsAgeAndDateValid(string date) =>
-        HasDateValid(date);
-
-    public static bool IsAdmissionDateOrTerminatedDateValid(string date, string terminatedDate) =>
-        HasDateValid(date) || HasTerminatedDateValid(terminatedDate);
-
     private static bool HasEmailValid(string email)
     {
         if (email.Contains('@'))
@@ -60,24 +54,5 @@ public static class ResponseValidateUI
             return true;
 
         throw new InvalidPasswordException($"Password - {password}, Invalid. Should length >= 5");
-    }
-
-    private static bool HasDateValid(string date)
-    {
-        var inputDateYear = DateTime.Parse(date).Year;
-        var nowDateYear = DateTime.Now.Year;
-
-        if (inputDateYear >= 1980 && inputDateYear <= nowDateYear)
-            return true;
-
-        throw new DisallowedDateException($"Date - {date}, Invalid. Should > 1980");
-    }
-
-    private static bool HasTerminatedDateValid(string date)
-    {
-        if (HasDateValid(date))
-            return true;
-
-        throw new DisallowedDateException(date);
     }
 }

@@ -8,7 +8,7 @@ public interface IObjectRelationshipsManager
 
     void UserProfileByAccount(Account account, UserProfile userProfile);
 
-    void UserProfileByCorporation(UserProfile userProfile, Corporation corporation);
+    void UserProfileByCorporations(UserProfile userProfile, HashSet<Corporation> corporations);
 
-    void CorporationByUserProfile(UserProfile userProfile, Corporation corporation);
+    void CorporationsByUserProfile(UserProfile userProfile, HashSet<Corporation> corporations);
 }

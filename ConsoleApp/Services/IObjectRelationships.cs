@@ -6,5 +6,5 @@ public interface IObjectRelationships
 {
     void CreatingRelationships(Account account,
                                UserProfile userProfile,
-                               Corporation corporation);
+                               HashSet<Corporation> corporations);
 }

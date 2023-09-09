@@ -1,8 +1,6 @@
-using ConsoleApp.Models;
-
 namespace ConsoleApp.Services;
 
-public interface IObjectCreatingManager
+public interface IObjectCreatingManager<T> where T : class
 {
-    void CreatingObjects(IFileManagement fileManagement);
+    void CreatingObjects(IFileManagement<T> fileManagement);
 }

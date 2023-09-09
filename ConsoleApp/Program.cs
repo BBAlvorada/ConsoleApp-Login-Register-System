@@ -1,3 +1,4 @@
+using ConsoleApp.Models;
 using ConsoleApp.Services.Implements;
 using ConsoleApp.Utils;
 
@@ -8,7 +9,7 @@ public class Program
     public static void Main()
     {
         var fileManagement = 
-            new FileManagement();
+            new FileManagement<Account>();
 
         var objectRelationshipsManager = 
             new ObjectRelationshipsManager();

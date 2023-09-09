@@ -6,8 +6,8 @@ namespace ConsoleApp.Utils;
 
 public static class ConsoleUI
 {
-    public static void Menu(IFileManagement fileManagement,
-                            IObjectCreatingManager objectCreatingManager)
+    public static void Menu(IFileManagement<Account> fileManagement,
+                            IObjectCreatingManager<Account> objectCreatingManager)
     {
         while (true)
         {
@@ -74,7 +74,7 @@ public static class ConsoleUI
                 var dateOfBirth = Console.ReadLine()!;
 
                 Console.WriteLine("==================================\n");
-                if (ResponseValidateUI.IsAgeAndDateValid(dateOfBirth.ToString()))
+                if (DateConfig.HasDateValid(dateOfBirth))
                     return new(fullName, dateOfBirth);
             }
             catch (DisallowedDateException ex) { PrinterConsoleUI.MessageConsole(ex.Message); }
@@ -101,8 +101,7 @@ public static class ConsoleUI
                 var terminatedDate = Console.ReadLine()!;
 
                 Console.WriteLine("==================================\n");
-                if (ResponseValidateUI.IsAdmissionDateOrTerminatedDateValid(admissionDate,
-                                                                            terminatedDate))
+                if (DateConfig.HasDateValid(admissionDate, terminatedDate))
                     return new(name, admissionDate, terminatedDate);
 
             }
@@ -111,16 +110,39 @@ public static class ConsoleUI
         }
     }
 
-    public static void GetFileObject(IFileManagement fileManagement) =>
+    public static HashSet<Corporation> CreateCorporations()
+    {
+        while (true)
+        {
+            try
+            {
+                Console.WriteLine("=========== Corporations ==========");
+                Console.Write("How Many Corporations Want To Add: ");
+
+                var CorporationsInput = Convert.ToInt16(Console.ReadLine());
+                Console.WriteLine("==================================\n");
+
+                var corporationsList = new HashSet<Corporation>();
+
+                for (int i = 1; i <= CorporationsInput; i++)
+                    corporationsList.Add(CreateCorporation());
+                
+                return corporationsList;
+            }
+            catch (FormatException ex) { Console.WriteLine(ex.Message); }
+        }
+    }
+
+    public static void GetFileObject(IFileManagement<Account> fileManagement) =>
         Console.WriteLine(fileManagement.GetFile());
 
-    public static void UpdateFileObject(IFileManagement fileManagement,
-                                        IObjectCreatingManager objectCreatingManager) =>
+    public static void UpdateFileObject(IFileManagement<Account> fileManagement,
+                                        IObjectCreatingManager<Account> objectCreatingManager) =>
         objectCreatingManager.CreatingObjects(fileManagement);
 
-    public static void DeleteFileObject(IFileManagement fileManagement)
+    public static void DeleteFileObject(IFileManagement<Account> fileManagement)
     {
         fileManagement.DeleteFile();
-        Console.WriteLine("Deleted Sucessfully\n");
+        PrinterConsoleUI.MessageConsole("Deleted Sucessfully\n");
     }
 }
