@@ -4,5 +4,5 @@ namespace ConsoleApp.Services;
 
 public interface IObjectCreatingManager
 {
-    void CreatingObjects();
+    void CreatingObjects(IFileManagement fileManagement);
 }

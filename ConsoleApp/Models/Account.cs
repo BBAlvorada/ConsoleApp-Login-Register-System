@@ -14,7 +14,7 @@ public class Account
     {
         Email = email;
         Password = password;
-        CreatedAt = DateTime.Now.Date;
+        CreatedAt = DateTime.Now;
     }
 
     public override string ToString()
@@ -24,7 +24,7 @@ public class Account
             .Append("{ ")
             .Append($"Email: {Email}, ")
             .Append($"Password: {Password}, ")
-            .Append($"CreateAt: {CreatedAt}")
+            .Append($"CreateAt: {CreatedAt.Date}")
             .AppendLine(" }")
             .Append($"{UserProfile}")
             .ToString();

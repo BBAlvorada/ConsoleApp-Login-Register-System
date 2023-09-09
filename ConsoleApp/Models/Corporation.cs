@@ -12,11 +12,11 @@ public class Corporation
 
     public Corporation(string name,
                        string admissionDate,
-                       string terminatedDate)
+                       string? terminatedDate)
     {
         Name = name;
-        AdmissionDate = DateTime.Parse(admissionDate).Date;
-        TerminatedDate = DateTime.Parse(terminatedDate).Date;
+        AdmissionDate = DateTime.Parse(admissionDate);
+        TerminatedDate = DateTime.Parse(terminatedDate!);
     }
 
     public override string ToString()
@@ -25,8 +25,8 @@ public class Corporation
             .Append("Corporation ")
             .Append("{ ")
             .Append($"Name: {Name}, ")
-            .Append($"Admission: {AdmissionDate}, ")
-            .Append($"Terminated: {TerminatedDate}")
+            .Append($"Admission: {AdmissionDate.Date}, ")
+            .Append($"Terminated: {TerminatedDate.Date}")
             .AppendLine(" }")
             .ToString();
     }

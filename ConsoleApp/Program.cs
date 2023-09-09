@@ -7,10 +7,19 @@ public class Program
 {
     public static void Main()
     {
-        var objectRelationshipsManager = new ObjectRelationshipsManager();
-        var objectRelationships = new ObjectRelationships(objectRelationshipsManager);
-        var creatingObjects = new ObjectCreatingManager(objectRelationships);
+        var fileManagement = 
+            new FileManagement();
 
-        creatingObjects.CreatingObjects();
+        var objectRelationshipsManager = 
+            new ObjectRelationshipsManager();
+
+        var objectRelationships = 
+            new ObjectRelationships(objectRelationshipsManager);
+
+        var objectCreatingManager = 
+            new ObjectCreatingManager(objectRelationships);
+
+        Console.Clear();
+        ConsoleUI.Menu(fileManagement, objectCreatingManager);
     }
 }

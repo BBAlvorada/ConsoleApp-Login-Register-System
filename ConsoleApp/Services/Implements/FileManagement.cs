@@ -4,11 +4,38 @@ namespace ConsoleApp.Services.Implements;
 
 public class FileManagement : IFileManagement
 {
-    public void CreateFile(string path, object model) { }
+    private readonly string _folderPath;
+    private readonly string _filePath;
 
-    public void GetFile(string path) { }
+    public FileManagement()
+    {
+        _folderPath = @"C:\Users\Virtual Machine\Documents";
+        _filePath = Path.Combine(_folderPath, "Login & Register System.txt.");
+    }
 
-    public void UpdateFile(string path, object newModel) { }
+    public void CreateFile(object model)
+    {
+        using var writer = new StreamWriter(_filePath, true);
 
-    public void DeleteFile(string path) { }
+        writer.Write($"{model}\n");
+    }
+
+    public string GetFile()
+    {
+        using var reader = new StreamReader(_filePath);
+
+        Console.Clear();
+        return reader.ReadToEnd();
+    }
+
+    public void UpdateFile(object newModel)
+    {
+        using var writer = new StreamWriter(_filePath);
+
+        writer.WriteLine("Updating:");
+        writer.Write(newModel);
+    }
+
+    public void DeleteFile() =>
+        File.Delete(_filePath);
 }

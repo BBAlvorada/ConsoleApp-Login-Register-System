@@ -1,7 +1,9 @@
+using ConsoleApp.Utils;
+
 namespace ConsoleApp.Exceptions;
 
 public class InvalidInputException : Exception
 {
-    public InvalidInputException(short response) :
-        base($"Response {response}, Invalid. Try Again!!") { }
+    public InvalidInputException(string message) :
+        base(PrinterConsoleUI.MessageConsoleException(message)) { }
 }

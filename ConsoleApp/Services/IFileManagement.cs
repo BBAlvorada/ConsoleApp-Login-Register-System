@@ -2,11 +2,11 @@ namespace ConsoleApp.Services;
 
 public interface IFileManagement
 {
-    void CreateFile(string path, Object model);
+    void CreateFile(Object model);
 
-    void GetFile(string path);
+    string GetFile();
 
-    void UpdateFile(string path, Object newModel);
+    void UpdateFile(Object newModel);
 
-    void DeleteFile(string path);
+    void DeleteFile();
 }

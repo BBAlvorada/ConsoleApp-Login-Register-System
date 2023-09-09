@@ -1,4 +1,5 @@
 using System.Text;
+using ConsoleApp.Utils;
 
 namespace ConsoleApp.Models;
 
@@ -11,11 +12,11 @@ public class UserProfile
     public Corporation? Corporation { get; set; }
     public Account? Account { get; set; }
 
-    public UserProfile(string fullName, int age, string dateOfBirth)
+    public UserProfile(string fullName, string dateOfBirth)
     {
         FullName = fullName;
-        Age = age;
-        DateOfBirth = DateTime.Parse(dateOfBirth).Date;
+        Age = UserAgeCalculator.BirthdayAgeCalculator(dateOfBirth);
+        DateOfBirth = DateTime.Parse(dateOfBirth);
     }
 
     public override string ToString()
@@ -25,7 +26,7 @@ public class UserProfile
             .Append("{ ")
             .Append($"Full Name: {FullName}, ")
             .Append($"Age: {Age}, ")
-            .Append($"Date Of Birth: {DateOfBirth}")
+            .Append($"Date Of Birth: {DateOfBirth.Date}")
             .AppendLine(" }")
             .Append($"{Corporation}")
             .ToString();

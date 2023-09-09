@@ -1,7 +1,9 @@
+using ConsoleApp.Utils;
+
 namespace ConsoleApp.Exceptions;
 
 public class InsufficientAgeException : Exception
 {
-    public InsufficientAgeException(short age) :
-        base($"\nAge {age}, Invalid. Should > 15") { }
+    public InsufficientAgeException(string message) :
+        base(PrinterConsoleUI.MessageConsoleException(message)) { }
 }

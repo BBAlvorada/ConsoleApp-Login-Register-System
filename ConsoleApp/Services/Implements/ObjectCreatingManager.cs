@@ -7,10 +7,10 @@ public class ObjectCreatingManager : IObjectCreatingManager
 {
     private readonly IObjectRelationships _objectRelationships;
 
-    public ObjectCreatingManager(IObjectRelationships objectRelationships) => 
+    public ObjectCreatingManager(IObjectRelationships objectRelationships) =>
         _objectRelationships = objectRelationships;
 
-    public void CreatingObjects()
+    public void CreatingObjects(IFileManagement fileManagement)
     {
         var account = ConsoleUI.CreateAccount();
         var userProfile = ConsoleUI.CreateUserProfile();
@@ -18,6 +18,6 @@ public class ObjectCreatingManager : IObjectCreatingManager
 
         _objectRelationships.CreatingRelationships(account, userProfile, corporation);
 
-        Console.WriteLine(account);
+        fileManagement.CreateFile(account);
     }
 }

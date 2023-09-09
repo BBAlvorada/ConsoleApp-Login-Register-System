@@ -1,7 +1,9 @@
+using ConsoleApp.Utils;
+
 namespace ConsoleApp.Exceptions;
 
 public class InvalidEmailException : Exception
 {
-    public InvalidEmailException(string email) :
-        base($"\nEmail - {email}, Invalid. Should @\n") { }
+    public InvalidEmailException(string message) :
+        base(PrinterConsoleUI.MessageConsoleException(message)) { }
 }
